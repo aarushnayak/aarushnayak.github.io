@@ -1,36 +1,38 @@
-## Interactive-Portfolio 
-[![GitHub](https://img.shields.io/github/license/AjitVerma15/Interactive-Portfolio?color=green)](https://img.shields.io/github/license/AjitVerma15/Interactive-Portfolio)
-## A Resposive and attractive portfolio for Developers 🔥
-A clean, beautiful and responsive portfolio templete with using only HTML and css.
-Later on add some javascript for animation and designing.
-visit the website [here.](https://ajitverma15.github.io/Interactive-Portfolio/)
+# Aarush Nayak — Portfolio
 
+Personal portfolio website for **Aarush Nayak**, focused on Data Analytics and Python Development.
 
-![ezgif com-optimize](https://user-images.githubusercontent.com/53833570/87217363-f9e6ff00-c365-11ea-9e1a-4d017964f2b4.gif)
-##
-## Sections:
-💥 About me\
-💥 Education\
-💥 Cretification\
-💥 Skills\
-💥 Projects\
-💥 Contact me
+🌐 **Live website:** https://aarushnayak.github.io  
+💻 **Repository:** https://github.com/aarushnayak/aarush.github.io  
+🔗 **LinkedIn:** https://www.linkedin.com/in/aarush-nayak-8302ab220/
 
-## Technology used:
+## About
+
+I am a technology enthusiast interested in turning raw data into useful insights and building practical applications with Python. I have completed my B.Tech in Computer Science & Engineering and am currently pursuing an M.Tech.
+
+## Featured work
+
+- [Sales Data Analysis](https://github.com/aarushnayak/Sales-Data-Analysis) — [Live dashboard](https://aarush-sales-dashboard.streamlit.app)
+- [GDP Dashboard](https://github.com/aarushnayak/gdp-dashboard)
+- [SIEM Lite](https://github.com/aarushnayak/SIEM_Lite_Project)
+- [Finance Backend](https://github.com/aarushnayak/finance-backend)
+- [CodeAssist AI](https://github.com/aarushnayak/CodeAssist-AI)
+- [Trading Bot Assignment](https://github.com/aarushnayak/trading-bot-assignment)
+
+## Tech stack
+
+Python · SQL · Pandas · NumPy · Matplotlib · Seaborn · MySQL · MongoDB · FastAPI · Streamlit · Git · Linux
+
+## Built with
+
 - HTML
 - CSS
+- Vanilla JavaScript
 
-# Illustration and Images
-- [Undraw](https://undraw.co/)
-- [Hackerblock](https://hack.codingblocks.com/)
+## Run locally
 
-## For the Future
-I'm in the process of learning javascript So,i didn't add any of it 
-If you can help us with these.Please don't hesitate to open a pull request.
-- Add a page loader
-- Add some Animation
-- Enable Dark mode
-- Add some more Section
+Clone the repository and open `index.html` in your browser. No build step is required.
 
-## Reference 
-Some Design idea are taken from [Ashutosh Hathidara](https://github.com/ashutosh1919/masterPortfolio)
+---
+
+Designed and built by Aarush Nayak.
