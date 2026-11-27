@@ -1,4 +1,4 @@
-# Aarush Nayak — Portfolio
+## Aarush Nayak — Portfolio
 
 Personal portfolio website for **Aarush Nayak**, focused on Data Analytics and Python Development.
 
