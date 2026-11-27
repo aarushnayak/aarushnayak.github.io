@@ -58,6 +58,14 @@
       <a class="scroll-cue" href="#about"><span></span> SCROLL TO EXPLORE</a>
     </section>
 
+    <section class="proof-strip container" aria-label="Portfolio snapshot">
+      <div class="proof-intro"><span class="section-label">THE SNAPSHOT</span><p>A little proof of<br>curiosity in action.</p></div>
+      <div class="proof-stat"><strong data-count="6">06</strong><span>FEATURED PROJECTS</span></div>
+      <div class="proof-stat"><strong data-count="3">03</strong><span>INTERNSHIP EXPERIENCES</span></div>
+      <div class="proof-stat"><strong data-count="2">02</strong><span>CORE FOCUS AREAS</span></div>
+      <div class="proof-note"><span class="proof-spark">✳</span><span>Always learning.<br>Always building.</span></div>
+    </section>
+
     <section class="section container" id="about">
       <div class="section-heading"><p class="section-label">01 / ABOUT</p><h2>A little about <span>me.</span></h2></div>
       <div class="about-grid">
@@ -185,6 +193,45 @@
       });
     }
 
+    // Count-up stats: small motion, no invented metrics.
+    const countObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const node = entry.target;
+        const target = Number(node.dataset.count || 0);
+        const start = performance.now();
+        const duration = 900;
+        const tick = now => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          node.textContent = String(Math.round(target * eased)).padStart(2, '0');
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        countObserver.unobserve(node);
+      });
+    }, { threshold: 0.65 });
+    document.querySelectorAll('[data-count]').forEach(node => countObserver.observe(node));
+
+    // Subtle card tilt on pointer devices; touch layouts stay calm.
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('pointermove', event => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = 'perspective(900px) rotateX(' + (-y * 2.2) + 'deg) rotateY(' + (x * 2.2) + 'deg) translateY(-5px)';
+        });
+        card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+      });
+    }
+
+    // Back-to-top control appears after the first screen.
+    const topButton = document.querySelector('.back-to-top');
+    const toggleTopButton = () => topButton.classList.toggle('is-visible', window.scrollY > 650);
+    window.addEventListener('scroll', toggleTopButton, { passive: true });
+    toggleTopButton();
+
     // Highlight the navigation item for the section currently in view.
     const sections = document.querySelectorAll('main section[id]');
     const sectionObserver = new IntersectionObserver(entries => {
@@ -198,5 +245,6 @@
     }, { rootMargin: '-35% 0px -55% 0px' });
     sections.forEach(section => sectionObserver.observe(section));
   </script>
+  <a class="back-to-top" href="#home" aria-label="Back to top">↑</a>
 </body>
 </html>
