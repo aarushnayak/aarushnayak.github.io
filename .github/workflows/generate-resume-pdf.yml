@@ -1,0 +1,46 @@
+name: Build downloadable resume PDF
+on:
+  push:
+    paths:
+      - "resume.html"
+      - ".github/workflows/generate-resume-pdf.yml"
+permissions:
+  contents: write
+jobs:
+  build-resume:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Chromium
+        run: |
+          npm install playwright
+          npx playwright install --with-deps chromium
+      - name: Render resume PDF
+        run: |
+          node - <<'NODE'
+          const { chromium } = require('playwright');
+          const path = require('path');
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
+            await page.goto('file://' + path.resolve('resume.html'), { waitUntil: 'networkidle' });
+            await page.pdf({ path: 'resume.pdf', format: 'A4', printBackground: true, preferCSSPageSize: true });
+            await browser.close();
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
+      - name: Commit generated PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resume.pdf
+          if git diff --cached --quiet; then
+            echo "Resume PDF is already up to date."
+            exit 0
+          fi
+          git commit -m "Generate downloadable resume PDF"
+          git push
